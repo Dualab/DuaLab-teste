@@ -1,5 +1,4 @@
-import { html } from "lit";
-
+import { html } from "lit-html";
 import "./LEDElement"; // Certifique-se de que o caminho está correto para importar o componente
 
 export default {
@@ -20,14 +19,15 @@ export default {
   },
 };
 
-const Template = ({ color, flip, label, lightColor, value }) =>
-  html`<wokwi-led
+const Template = ({ color, flip, label, lightColor, value }) => html`
+  <wokwi-led
     color=${color}
     .flip=${flip}
     label=${label}
     lightColor=${lightColor}
     .value=${value}
-  ></wokwi-led>`;
+  ></wokwi-led>
+`;
 
 export const Red = Template.bind({});
 Red.args = { color: "red" };
@@ -53,38 +53,37 @@ Orange.args = { color: "orange" };
 export const White = Template.bind({});
 White.args = { color: "white" };
 
-export const BrightnessLevels = () =>
-  html`
-    <wokwi-led color="red" label="0" .value=${true} brightness="0"></wokwi-led>
-    <wokwi-led
-      color="red"
-      label="1%"
-      .value=${true}
-      brightness="0.01"
-    ></wokwi-led>
-    <wokwi-led
-      color="red"
-      label="10%"
-      .value=${true}
-      brightness="0.1"
-    ></wokwi-led>
-    <wokwi-led
-      color="red"
-      label="25%"
-      .value=${true}
-      brightness="0.25"
-    ></wokwi-led>
-    <wokwi-led
-      color="red"
-      label="50%"
-      .value=${true}
-      brightness="0.5"
-    ></wokwi-led>
-    <wokwi-led
-      color="red"
-      label="75%"
-      .value=${true}
-      brightness="0.75"
-    ></wokwi-led>
-    <wokwi-led color="red" label="100%" .value=${true}></wokwi-led>
-  `;
+export const BrightnessLevels = () => html`
+  <wokwi-led color="red" label="0" .value=${true} brightness="0"></wokwi-led>
+  <wokwi-led
+    color="red"
+    label="1%"
+    .value=${true}
+    brightness="0.01"
+  ></wokwi-led>
+  <wokwi-led
+    color="red"
+    label="10%"
+    .value=${true}
+    brightness="0.1"
+  ></wokwi-led>
+  <wokwi-led
+    color="red"
+    label="25%"
+    .value=${true}
+    brightness="0.25"
+  ></wokwi-led>
+  <wokwi-led
+    color="red"
+    label="50%"
+    .value=${true}
+    brightness="0.5"
+  ></wokwi-led>
+  <wokwi-led
+    color="red"
+    label="75%"
+    .value=${true}
+    brightness="0.75"
+  ></wokwi-led>
+  <wokwi-led color="red" label="100%" .value=${true}></wokwi-led>
+`;

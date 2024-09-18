@@ -1,8 +1,8 @@
-import { css, html, LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import React from "react";
+import styled from "styled-components";
 import { ElementPin } from "./pin"; // Presumindo que esse arquivo existe
 
-const lightColors: { [key: string]: string } = {
+const lightColors = {
   red: "#ff8080",
   green: "#80ff80",
   blue: "#8080ff",
@@ -12,67 +12,56 @@ const lightColors: { [key: string]: string } = {
   purple: "#ff80ff",
 };
 
-@customElement("wokwi-led")
-export class LEDElement extends LitElement {
-  @property({ type: Boolean }) value = false;
-  @property({ type: Number }) brightness = 1.0;
-  @property({ type: String }) color = "red";
-  @property({ type: String }) lightColor: string | null = null;
-  @property({ type: String }) label = "";
-  @property({ type: Boolean }) flip = false;
+const LEDContainer = styled.div`
+  display: inline-block;
+`;
 
-  get pinInfo(): ElementPin[] {
-    const anodeX = this.flip ? 15 : 25;
-    const cathodeX = this.flip ? 25 : 15;
+const LEDInnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 40px;
+`;
+
+const LEDLabel = styled.div`
+  font-size: 10px;
+  text-align: center;
+  color: gray;
+  position: relative;
+  line-height: 1;
+  top: -8px;
+`;
+
+const LEDElement = ({
+  value = false,
+  brightness = 1.0,
+  color = "red",
+  lightColor = null,
+  label = "12",
+  flip = false,
+}) => {
+  const getPinInfo = () => {
+    const anodeX = flip ? 15 : 25;
+    const cathodeX = flip ? 25 : 15;
 
     return [
       { name: "A", x: anodeX, y: 42, signals: [], description: "Anode" },
       { name: "C", x: cathodeX, y: 42, signals: [], description: "Cathode" },
     ];
-  }
+  };
 
-  static styles = css`
-    :host {
-      display: inline-block;
-    }
+  const lightColorActual =
+    lightColor || lightColors[color?.toLowerCase()] || color;
+  const opacity = brightness ? 0.3 + brightness * 0.7 : 0;
+  const lightOn = value && brightness > Number.EPSILON;
+  const xScale = flip ? -1 : 1;
 
-    .led-container {
-      display: flex;
-      flex-direction: column;
-      width: 40px;
-    }
-
-    .led-label {
-      font-size: 10px;
-      text-align: center;
-      color: gray;
-      position: relative;
-      line-height: 1;
-      top: -8px;
-    }
-  `;
-
-  update(changedProperties: Map<string | any, any>): void {
-    if (changedProperties.has("flip")) {
-      this.dispatchEvent(new CustomEvent("pininfo-change"));
-    }
-    super.update(changedProperties);
-  }
-
-  render() {
-    const { color, lightColor, flip } = this;
-    const lightColorActual =
-      lightColor || lightColors[color?.toLowerCase()] || color;
-    const opacity = this.brightness ? 0.3 + this.brightness * 0.7 : 0;
-    const lightOn = this.value && this.brightness > Number.EPSILON;
-    const xScale = flip ? -1 : 1;
-
-    return html`
-      <div class="led-container">
+  return (
+    <LEDContainer>
+      <LEDInnerContainer>
         <svg
           width="40"
           height="50"
-          transform="scale(${xScale} 1)"
+          transform={`scale(${xScale} 1)`}
           version="1.2"
           viewBox="-10 -5 35.456 39.618"
           xmlns="http://www.w3.org/2000/svg"
@@ -128,22 +117,24 @@ export class LEDElement extends LitElement {
               cx="7.0877"
               cy="16.106"
               r="5.1213"
-              fill="${lightColorActual}"
-              opacity="${lightOn ? opacity : 0}"
+              fill={lightColorActual}
+              opacity={lightOn ? opacity : 0}
               filter="url(#light1)"
             />
             <circle
               cx="7.0877"
               cy="16.106"
               r="5.1213"
-              fill="${lightColorActual}"
-              opacity="${lightOn ? opacity : 0}"
+              fill={lightColorActual}
+              opacity={lightOn ? opacity : 0}
               filter="url(#light2)"
             />
           </g>
         </svg>
-        <div class="led-label">${this.label}</div>
-      </div>
-    `;
-  }
-}
+        <LEDLabel>{label}</LEDLabel>
+      </LEDInnerContainer>
+    </LEDContainer>
+  );
+};
+
+export default LEDElement;
