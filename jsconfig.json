@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "target": "es6",                  
-    "module": "esnext",              
+    "module": "commonjs",
+    "jsx": "react",            
     "experimentalDecorators": true,  
     "emitDecoratorMetadata": true,   
     "moduleResolution": "node",      

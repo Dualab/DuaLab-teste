@@ -5,20 +5,20 @@
   "keywords": [],
   "main": "src/index.tsx",
   "dependencies": {
+    "@lit-labs/react": "2.1.3",
+    "@wokwi/elements": "1.5.1",
+    "avr8js": "0.20.1",
+    "lit": "3.2.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-scripts": "^5.0.0",
-    "avr8js": "0.20.1",
     "react-draggable": "4.4.6",
-    "@wokwi/elements": "1.5.1",
-    "lit": "3.2.0",
-    "@lit-labs/react": "2.1.3"
+    "react-scripts": "^5.0.0"
   },
   "devDependencies": {
-    "@types/react": "18.2.38",
-    "@types/react-dom": "18.2.15",
+    "@types/react": "^18.2.38",
+    "@types/react-dom": "^18.2.15",
     "loader-utils": "3.2.1",
-    "typescript": "4.4.4"
+    "typescript": "^4.4.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,5 +28,10 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
-  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
