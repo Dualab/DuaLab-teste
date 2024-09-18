@@ -1,4 +1,5 @@
 import { html } from "lit";
+
 import "./LEDElement"; // Certifique-se de que o caminho está correto para importar o componente
 
 export default {
