@@ -1,5 +1,6 @@
 import React from "react";
-import "./LEDElement.ts"; // Importa o LED personalizado
+import "./LEDElement.ts";
+import "@wokwi/elements"; // Importa o LED personalizado
 
 function App() {
   return (
