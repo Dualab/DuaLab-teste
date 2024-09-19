@@ -8,13 +8,16 @@
     "@lit-labs/react": "2.1.3",
     "@wokwi/elements": "^1.5.1",
     "avr8js": "0.20.1",
-    "lit": "3.2.0",
+    "lit": "^3.2.0",
+    "lit-html": "^3.2.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-draggable": "4.4.6",
-    "react-scripts": "^5.0.0"
+    "react-scripts": "^5.0.0",
+    "styled-components": "^6.1.13"
   },
   "devDependencies": {
+    "@storybook/react": "^8.3.1",
     "@types/react": "^18.2.38",
     "@types/react-dom": "^18.2.15",
     "loader-utils": "3.2.1",
